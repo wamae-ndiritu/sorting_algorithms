@@ -37,4 +37,5 @@ void insertion_sort_list(listint_t **list)
 		}
 		current_node = current_node->next;
 	}
+	free_list(*list);
 }

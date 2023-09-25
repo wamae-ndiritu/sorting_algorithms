@@ -1,6 +1,26 @@
 #include "sort.h"
 
 /**
+ * free_list - Frees a linked list
+ *
+ * @head: Pointer to the head of the list
+ *
+ * Return: Nothing.
+ */
+
+void free_list(listint_t *head)
+{
+	while (head != NULL)
+	{
+		listint_t *next_node = head->next;
+
+		free(head);
+		head = next_node;
+	}
+}
+
+
+/**
  * create_listint - Creates a doubly linked list from an array of integers
  *
  * @array: Array to convert to a doubly linked list
@@ -39,7 +59,7 @@ listint_t *create_listint(const int *array, size_t size)
 int main(void)
 {
 	listint_t *list;
-	int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
+	int array[] = {48, 19, 10, 2};
 	size_t n = sizeof(array) / sizeof(array[0]);
 
 	list = create_listint(array, n);
@@ -50,5 +70,6 @@ int main(void)
 	insertion_sort_list(&list);
 	printf("\n");
 	print_list(list);
+	/*free_list(list);*/
 	return (0);
 }
